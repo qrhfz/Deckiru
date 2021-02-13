@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302198093468",
+    "project_id": "deckiru",
+    "storage_bucket": "deckiru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302198093468:android:c3a659a4f6f384c7a51f59",
+        "android_client_info": {
+          "package_name": "dev.qori.deckiru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302198093468-4pjj2pse1lrv6ubollif1l04cejs5dkh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhNFXXiMtKG9UTCB7Ft_-4Ll378GVdMH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302198093468-4pjj2pse1lrv6ubollif1l04cejs5dkh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

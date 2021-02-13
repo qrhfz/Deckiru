@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Freshcard</string>
+    <string name="login_sign_string">Atau login <u>di sini</u></string>
+    <string name="title_activity_home">Daftar Deck</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies nisi vitae scelerisque luctus. Etiam euismod semper orci, eget luctus ante iaculis ac. Curabitur venenatis sodales ipsum, quis interdum erat dictum sit amet. Nullam id faucibus nisi, id egestas mi. Nullam luctus magna eget felis elementum, eu rhoncus massa bibendum. In hac habitasse platea dictumst. Pellentesque justo lacus, egestas id lacus bibendum, varius ornare eros. </string>
+    <string name="client_id">302198093468-18v9bst6e43jecphnvo6bse7q7e0skgb.apps.googleusercontent.com</string>
+    <string name="toolbar_sign_out">Keluar</string>
+</resources>
