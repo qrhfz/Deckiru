@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -18,7 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import dev.qori.deckiru.databinding.ActivityHomeBinding
 import dev.qori.deckiru.fragment.AddDeckDialog
+import dev.qori.deckiru.fragment.UpdateDeckDialog
 import dev.qori.deckiru.model.Deck
+import dev.qori.deckiru.model.SavedPreference
 import dev.qori.deckiru.utils.DeckViewHolder
 
 class HomeActivity : AppCompatActivity() {
@@ -36,8 +39,10 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            AddDeckDialog(this).show(supportFragmentManager, "AddDeckDialogFragment").run {
+                adapter.notifyDataSetChanged()
+            }
 
-            AddDeckDialog(this).show(supportFragmentManager, "AddDeckDialogFragment")
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -49,10 +54,12 @@ class HomeActivity : AppCompatActivity() {
 
         //readDecks(db)
         listView()
+
+//        binding.rvDeck.
     }
 
-    private fun listView() {
-        val query = db.collection("decks").orderBy("name", Query.Direction.ASCENDING)
+    fun listView() {
+        val query = db.collection("decks").whereEqualTo("owner", SavedPreference.getEmail(this))
 
         val res: FirestoreRecyclerOptions<Deck> = FirestoreRecyclerOptions.Builder<Deck>()
             .setQuery(query, Deck::class.java)
@@ -67,8 +74,17 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onBindViewHolder(holder: DeckViewHolder, position: Int, model: Deck) {
-                holder.tvDeckROwItemName.text = model.name
+                val name = model.name
+                val id = adapter.snapshots.getSnapshot(position).id
+                holder.tvDeckROwItemName.text = name
+                holder.itemView.setOnLongClickListener {
+                    UpdateDeckDialog( adapter, id, name!!).show(supportFragmentManager, "UpdateDeckDialogFragment")
+                    return@setOnLongClickListener true
+
+                }
             }
+
+
         }
 
         binding.rvDeck.layoutManager = LinearLayoutManager(this)

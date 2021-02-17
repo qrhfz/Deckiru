@@ -4,6 +4,7 @@ import com.google.firebase.Timestamp
 
 class Deck {
     var name: String? = null
+    var id: String? = null
     var lastSession: Timestamp? = null
     var owner: String? = null
 
