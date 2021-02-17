@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import dev.qori.deckiru.R
 import dev.qori.deckiru.databinding.AddDeckDialogFragmentBinding
 import dev.qori.deckiru.model.Deck
 import dev.qori.deckiru.model.SavedPreference
-import java.sql.Timestamp
+
 
 class AddDeckDialog(val ctx: Context) : DialogFragment() {
     private var addDeckDialogFragmentBinding: AddDeckDialogFragmentBinding? = null
@@ -35,12 +36,12 @@ class AddDeckDialog(val ctx: Context) : DialogFragment() {
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
+//        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     private fun addDeck(db: FirebaseFirestore, name: String) {
-        val deck = Deck(name = name, lastSession = Timestamp(0), owner = SavedPreference.getEmail(ctx)!! )
+        val deck = Deck(name = name, lastSession = Timestamp.now(), owner = SavedPreference.getEmail(ctx)!! )
         db.collection("decks").add(deck)
             .addOnSuccessListener { documentReference ->
                 Log.d("WRITE", "DocumentSnapshot added with ID: ${documentReference.id}")
