@@ -9,14 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Freshcard">
-        <activity android:name="dev.qori.deckiru.CardActivity"/>
+        <activity android:name=".AddCardActivity"></activity>
+        <activity android:name=".CardActivity" />
         <activity
-            android:name="dev.qori.deckiru.HomeActivity"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.Freshcard.NoActionBar" />
-        <activity android:name="dev.qori.deckiru.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

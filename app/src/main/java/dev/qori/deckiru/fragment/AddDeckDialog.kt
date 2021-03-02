@@ -15,12 +15,11 @@ import dev.qori.deckiru.model.Deck
 import dev.qori.deckiru.model.SavedPreference
 
 
-class AddDeckDialog(val ctx: Context) : DialogFragment() {
+class AddDeckDialog(private val ctx: Context) : DialogFragment() {
     private var addDeckDialogFragmentBinding: AddDeckDialogFragmentBinding? = null
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        getDialog()!!.getWindow()?.setBackgroundDrawableResource(R.drawable.round_corner);
         return inflater.inflate(R.layout.add_deck_dialog_fragment, container, false)
     }
 
@@ -36,7 +35,6 @@ class AddDeckDialog(val ctx: Context) : DialogFragment() {
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-//        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
@@ -50,4 +48,10 @@ class AddDeckDialog(val ctx: Context) : DialogFragment() {
                 Log.w("WRITE", "Error adding document : ${exception.message}")
             }
     }
+
+    override fun onStop() {
+        super.onStop()
+        dismiss()
+    }
+
 }

@@ -1,24 +1,20 @@
 package dev.qori.deckiru.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import dev.qori.deckiru.R
 import dev.qori.deckiru.databinding.UpdateDeckDialogFragmentBinding
 import dev.qori.deckiru.model.Deck
-import dev.qori.deckiru.model.SavedPreference
 import dev.qori.deckiru.utils.DeckViewHolder
 
 
-class UpdateDeckDialog(val adapter: FirestoreRecyclerAdapter<Deck, DeckViewHolder>, val id : String,  val name: String) : DialogFragment() {
-    private var addDeckDialogFragmentBinding: UpdateDeckDialogFragmentBinding? = null
+class UpdateDeckDialog(private val adapter: FirestoreRecyclerAdapter<Deck, DeckViewHolder>, val id : String, val name: String) : DialogFragment() {
+    private var updateDeckDialogFragmentBinding: UpdateDeckDialogFragmentBinding? = null
     private val db = FirebaseFirestore.getInstance()
 
 
@@ -30,7 +26,7 @@ class UpdateDeckDialog(val adapter: FirestoreRecyclerAdapter<Deck, DeckViewHolde
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = UpdateDeckDialogFragmentBinding.bind(view)
-        addDeckDialogFragmentBinding = binding
+        updateDeckDialogFragmentBinding = binding
 
         binding.etUpdateDeckName.setText(name)
         binding.btnUpdateDeck.setOnClickListener { updateDeck(binding.etUpdateDeckName.text.toString()); dialog?.dismiss() }
@@ -52,7 +48,12 @@ class UpdateDeckDialog(val adapter: FirestoreRecyclerAdapter<Deck, DeckViewHolde
     }
 
     private fun delDeck() {
-
         db.collection("decks").document(id).delete()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        dismiss()
+
     }
 }

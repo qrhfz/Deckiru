@@ -8,19 +8,28 @@
     android:padding="8dp"
     tools:context="dev.qori.deckiru.CardActivity">
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <TextView
+        android:id="@+id/card_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HEADLINE"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:layout_marginBottom="8sp"/>
+
+    <TextView
+        android:id="@+id/card_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="@string/lipsum"
         android:lineSpacingMultiplier="1.5" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:fitsSystemWindows="true"
-        android:src="@drawable/wpxp"
-        android:contentDescription="TODO" />
+
 
     <Space
         android:layout_width="wrap_content"

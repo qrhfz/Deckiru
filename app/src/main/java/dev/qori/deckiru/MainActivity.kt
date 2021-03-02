@@ -18,6 +18,7 @@ import dev.qori.deckiru.model.SavedPreference
 import dev.qori.deckiru.databinding.ActivityMainBinding
 import dev.qori.deckiru.model.FirebaseGoogleAuth.firebaseAuth
 import dev.qori.deckiru.model.FirebaseGoogleAuth.Req_Code
+import dev.qori.deckiru.model.FirebaseGoogleAuth.gso
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -28,12 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.client_id))
-            .requestEmail()
-            .build()
-
-        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        mGoogleSignInClient= GoogleSignIn.getClient(applicationContext,gso)
 
         binding.btnLogin.setOnClickListener { signInGoogle() }
 
@@ -48,16 +44,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private  fun signInGoogle(){
-        val signInIntent: Intent =mGoogleSignInClient.signInIntent
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent,Req_Code)
     }
 
     private fun handleResult(completedTask: Task<GoogleSignInAccount>){
         try {
             val account: GoogleSignInAccount? =completedTask.getResult(ApiException::class.java)
-            if (account != null) {
+            if (account != null)
                 updateUI(account)
-            }
+
         } catch (e: ApiException){
             Toast.makeText(this,e.toString(), Toast.LENGTH_SHORT).show()
         }
@@ -81,4 +77,5 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

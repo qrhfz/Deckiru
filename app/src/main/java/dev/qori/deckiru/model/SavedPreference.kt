@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 
 object SavedPreference {
-    const val EMAIL= "email"
-    const val USERNAME="username"
+    private const val EMAIL= "email"
+    private const val USERNAME="username"
 
 
 
-    private  fun getPref(ctx: Context?): SharedPreferences? {
-        return ctx?.getSharedPreferences("dev.qori.deckiru_user", Context.MODE_PRIVATE)
+    private  fun getPref(ctx: Context): SharedPreferences? {
+        return ctx.getSharedPreferences("dev.qori.deckiru_user", Context.MODE_PRIVATE)
     }
 
     private fun  editor(context: Context, const:String, string: String){
