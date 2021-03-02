@@ -15,6 +15,7 @@ import com.google.firebase.firestore.Query
 import dev.qori.deckiru.databinding.ActivityHomeBinding
 import dev.qori.deckiru.fragment.AddDeckDialog
 import dev.qori.deckiru.fragment.UpdateDeckDialog
+import dev.qori.deckiru.model.Const.DECK_ID
 import dev.qori.deckiru.model.Deck
 import dev.qori.deckiru.model.FirebaseGoogleAuth.gso
 import dev.qori.deckiru.model.SavedPreference
@@ -26,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var query: Query
     private lateinit var res: FirestoreRecyclerOptions<Deck>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                 val id = this.snapshots.getSnapshot(position).id
                 holder.tvDeckROwItemName.text = name
                 holder.itemView.setOnClickListener{
-                    addCard()
+                    addCard(id)
                 }
 
                 holder.itemView.setOnLongClickListener {
@@ -97,13 +99,16 @@ class HomeActivity : AppCompatActivity() {
     }
     //For Logout END
 
-    fun addCard(){
-        val intent = Intent(this, AddCardActivity::class.java)
+    fun addCard(id : String){
+        val intent = Intent(this, AddCardActivity::class.java).apply {
+            putExtra(DECK_ID, id)
+        }
+
         startActivity(intent)
     }
 
     override fun onStop() {
-        binding.rvDeck.adapter = null
+//        binding.rvDeck.adapter = null
         super.onStop()
     }
 }

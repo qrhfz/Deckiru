@@ -4,11 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AddCardActivity">
 
     <TextView
+        android:id="@+id/deck_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Deck : Tralala"/>
+
+    <EditText
+        android:id="@+id/add_card_front"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Depan"/>
+
+    <EditText
+        android:id="@+id/add_card_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Belakang"/>
+
+    <EditText
+        android:id="@+id/add_card_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deskripsi"/>
+
+    <Button
+        android:id="@+id/add_card_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Kirim"/>
 
 </LinearLayout>
